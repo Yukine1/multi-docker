@@ -14,3 +14,10 @@ after_success:
   - docker build -t alexkolva/multi-nginx ./nginx
   - docker build -t alexkolva/multi-server ./server
   - docker build -t alexkolva/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push alexkolva/multi-client
+  - docker push alexkolva/multi-nginx
+  - docker push alexkolva/multi-server
+  - docker push alexkolva/multi-worker
